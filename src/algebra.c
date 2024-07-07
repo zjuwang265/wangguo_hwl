@@ -7,18 +7,32 @@ Matrix create_matrix(int row, int col)
     Matrix m;
     m.rows = row;
     m.cols = col;
+    m.data = (double **)malloc(row * sizeof(double *));
+    for (int i = 0; i < row; i++) {
+        m.data[i] = (double *)malloc(col * sizeof(double));
+    }
     return m;
 }
 
 Matrix add_matrix(Matrix a, Matrix b)
 {
-    // ToDo
+     Matrix result = create_matrix(a.rows, a.cols);
+    for (int i = 0; i < a.rows; i++) {
+        for (int j = 0; j < a.cols; j++) {
+            result.data[i][j] = a.data[i][j] + b.data[i][j];
+        }
+    }
     return create_matrix(0, 0);
 }
 
 Matrix sub_matrix(Matrix a, Matrix b)
 {
-    // ToDo
+    Matrix result = create_matrix(a.rows, a.cols);
+    for (int i = 0; i < a.rows; i++) {
+        for (int j = 0; j < a.cols; j++) {
+            result.data[i][j] = a.data[i][j] - b.data[i][j];
+        }
+    }
     return create_matrix(0, 0);
 }
 
